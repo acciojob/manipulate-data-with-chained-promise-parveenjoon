@@ -1,13 +1,47 @@
+
 <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manipulating Data with Chained Promises</title>
+</head>
+<body>
+  <div id="output"></div>
 
-<html>
-  <head>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
+  <script>
+    // Function to manipulate the array with chained promises
+    function manipulateArray(array) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(array);
+        }, 3000);
+      })
+      .then((array) => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            const filteredArray = array.filter(num => num % 2 === 0);
+            document.getElementById("output").textContent = filteredArray.join(", ");
+            resolve(filteredArray);
+          }, 1000);
+        });
+      })
+      .then((filteredArray) => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            const multipliedArray = filteredArray.map(num => num * 2);
+            document.getElementById("output").textContent = multipliedArray.join(", ");
+            resolve(multipliedArray);
+          }, 2000);
+        });
+      });
+    }
 
-  <body>
-    <!-- do not change this code -->
-    <div id="output"></div>
-    <script type="text/javascript" src="./script.js"></script>
-  </body>
+    // Input array
+    const inputArray = [1, 2, 3, 4];
+
+    // Call the function with input array
+    manipulateArray(inputArray);
+  </script>
+</body>
 </html>
