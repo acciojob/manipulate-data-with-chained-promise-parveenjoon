@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,39 +8,6 @@
 <body>
   <div id="output"></div>
 
-  <script>
-    // Function to manipulate the array with chained promises
-    function manipulateArray(array) {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(array);
-        }, 3000);
-      })
-      .then((array) => {
-        return new Promise((resolve) => {
-          setTimeout(() => {
-            const filteredArray = array.filter(num => num % 2 === 0);
-            document.getElementById("output").textContent = filteredArray.join(", ");
-            resolve(filteredArray);
-          }, 1000);
-        });
-      })
-      .then((filteredArray) => {
-        return new Promise((resolve) => {
-          setTimeout(() => {
-            const multipliedArray = filteredArray.map(num => num * 2);
-            document.getElementById("output").textContent = multipliedArray.join(", ");
-            resolve(multipliedArray);
-          }, 2000);
-        });
-      });
-    }
-
-    // Input array
-    const inputArray = [1, 2, 3, 4];
-
-    // Call the function with input array
-    manipulateArray(inputArray);
-  </script>
+  <script src="./script.js"></script>
 </body>
 </html>
